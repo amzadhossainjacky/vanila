@@ -267,45 +267,66 @@ router.get('/student_info', function(req, res){
      });
 });
 
-
 router.post('/student_info', function(req, res){
 
      var sdata ={
           name: req.body.search
      }
-     
-    /*  if(sdata.name == null){
-          adminModel.getStudent(function(results){
-               if(results.length > 0){
-                    res.render('admin/student_info', {results: results});
-               }else{
-                    res.redirect('/home');
-               }
-          });
           
-     }else{
-
-          adminModel.getSearchStudent(sdata,function(results){
-               if(results.length > 0){
-                   res.render('admin/student_info',{results: results});
-               }else{
-                    res.redirect('/home');
-               }
-          });
-     } */
-
-          adminModel.getSearchStudent(sdata,function(results){
-                console.log(results);
-      
+     adminModel.getSearchStudent(sdata,function(results){
+          if(results.length > 0){
                res.render('admin/student_info', {results: results});
-      
-    
+          }else{
+               res.redirect('/home/student_info');
+          }
      });
     
 });
 
+router.get('/student_info_edit/:id', function(req, res){
 
- 
+     adminModel.getEditStudent(req.params.id,function(results){
+          if(results.length > 0){
+               res.render('admin/student_info_edited', {results: results});
+          }else{
+               res.redirect('/home');
+          }
+     });
+});
+
+router.post('/student_info_edit/:id', function(req, res){
+
+     var sdata ={
+          name: req.body.sname,
+          institution:req.body.sinstitution,
+          email: req.body.email,
+          password: req.body.password,
+          phone: req.body.SPhoneNumber,
+          spname: req.body.pname,
+          spphone: req.body.PPhoneNumber,
+          spemail: req.body.spemail,
+          id:req.params.id
+     }
+
+     adminModel.getUpdateStudent(sdata,function(status){
+          if(status){
+               res.redirect('/home/student_info');
+          }else{
+               res.redirect('/home');
+          }
+     });
+});
+
+router.get('/student_delete/:id', function(req, res){
+
+     adminModel.deleteStudent(req.params.id,function(status){
+          if(status){
+               res.redirect('/home/student_info');
+          }else{
+               res.redirect('/home');
+          }
+     });
+});
 //teacher customization
  router.get('/teacher_info', function(req, res){
 
@@ -357,7 +378,7 @@ router.post('/teacher_info_edit/:id', function(req, res){
 
      adminModel.getUpdateTeacher(tdata,function(status){
           if(status){
-               res.redirect('/home//teacher_info');
+               res.redirect('/home/teacher_info');
           }else{
                res.redirect('/home');
           }
@@ -532,7 +553,41 @@ router.post('/notes_upload',upload.single('file'),function(req, res){
 });
 
 
+//marks upload
 
+
+router.get('/marks_entry', function(req, res){
+
+     adminModel.getCoursesId(function(results){
+          if(results.length > 0){
+               res.render('admin/marks_entry',{results: results});
+          }else{
+               res.redirect('/home');
+          }
+     })
+
+});
+
+
+router.post('/marks_entry', function(req, res){
+
+     var data = {
+          examType: req.body.examType,
+          examName: req.body.examName,
+          courseid: req.body.courseid,
+          userid: req.body.userid,
+          marks: req.body.marks
+     }
+
+     adminModel.entryMarks(data,function(status){
+          if(status){
+               res.redirect('/home/marks_entry');
+          }else{
+               res.redirect('/home');
+          }
+     })
+
+});
 module.exports = router;
 
 

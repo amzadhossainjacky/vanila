@@ -138,7 +138,6 @@ approveStudent: function(sdata, callback){
 },
 
 
-//teacher info
 getTeacher: function(callback){
     var sql = "SELECT * FROM teacherreg ORDER BY tid DESC";  
 
@@ -164,7 +163,8 @@ approveTeacher: function(sdata, callback){
      });
 },
 
-/* getSearchStudent: function(sdata, callback){
+//student info
+getSearchStudent: function(sdata, callback){
 
     var sql = 'SELECT * FROM studentreg where sname LIKE "%' + sdata.name + '%"';  
 
@@ -175,9 +175,44 @@ approveTeacher: function(sdata, callback){
             callback([]);
         }
     });
-}, */
+},
 
+getEditStudent: function(sid,callback){
+    var sql = "select * from studentreg where sid=?";
+    db.getResults(sql,[sid], function(results){
+        if(results){
+            callback(results);
+        }else{
+            callback([]);
+        }
+    });
+},
 
+getUpdateStudent: function(sdata, callback){
+
+    var sql = "update studentreg set sname=?,sinstitution=?, semail=?, spass=?, sphone=?, spname=?, spphone=?, spemail=? where sid=?";
+
+     db.execute(sql,[sdata.name,sdata.institution, sdata.email, sdata.password, sdata.phone,sdata.spname, sdata.spphone,sdata.spemail, sdata.id], function(status){
+         if(status){
+                 callback(true);
+            }else{
+                 callback(false);
+            }
+     });
+},
+
+deleteStudent: function(sid,callback){
+    var sql = "delete from studentreg where sid=?";
+    db.execute(sql,[sid], function(status){
+        if(status){
+            callback(true);
+        }else{
+            callback(true);
+        }
+    });
+},
+
+//teacher info
 getSearchTeacher: function(tdata, callback){
 
     var sql = 'SELECT * FROM teacherreg where tname LIKE "%' + tdata.name + '%"';  
@@ -348,5 +383,17 @@ uploadFile: function(ninfo, callback){
      });
 },
 
+//marks entry
+entryMarks: function(data, callback){
 
+    var sql = "insert into results values(?,?,?,?,?,?)";
+
+     db.execute(sql,[null, data.examName, data.examType,data.marks,data.userid, data.courseid ], function(status){
+         if(status){
+                 callback(true);
+            }else{
+                 callback(false);
+            }
+     });
+}
 }
