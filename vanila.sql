@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2020 at 12:37 PM
+-- Generation Time: Mar 07, 2020 at 03:00 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `aname`, `apass`, `aemail`) VALUES
 (1, 'Amzad Hossain Jacky', '1', 'jacky@gmail.com'),
-(2, 'Fariha Jahan Rainy', 'rainy123', 'rainy@gmail.com');
+(2, 'Fariha Jahan Rainy', '1', 'rainy@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -94,9 +94,9 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`cid`, `ctype`, `batch`, `date`, `fees`, `classtime`, `classday`, `status`, `adminid`, `teacherid`) VALUES
-(1, 'Model Test', 'SSC', '2020-03-02', 3000, '13:59:00', 'Sunday & Tuesday', 'yes', 1, 0),
+(1, 'Model Test', 'SSC', '2020-03-02', 4000, '13:59:00', 'Sunday & Tuesday', 'yes', 1, 0),
 (2, 'Model Test', 'SSC', '2020-03-02', 2000, '13:59:00', 'Sunday & Tuesday', 'yes', 1, 0),
-(9, 'Regular', 'HSC', '2020-03-07', 30000, '13:59:00', 'Monday & Wednesday', 'yes', 1, 0);
+(9, 'Model Test', 'SSC', '2020-03-07', 2200, '13:59:00', 'Sunday & Tuesday', 'yes', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -119,7 +119,8 @@ INSERT INTO `notes` (`nid`, `title`, `file`, `courseid`) VALUES
 (1, 'First post', '1583564327356quotes.jpg', 1),
 (2, 'asynchronous', '1583564562551Async & Performance.pdf', 2),
 (3, 'Third post', '1583564775842nodeinfo.txt', 9),
-(4, 'details', '1583564981460info.txt', 9);
+(4, 'details', '1583564981460info.txt', 9),
+(5, 'lastpost', '1583588778101nodejs.txt', 9);
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,8 @@ CREATE TABLE `notice` (
 --
 
 INSERT INTO `notice` (`noticeid`, `topic`, `details`, `date`, `adminid`, `teacherid`) VALUES
-(6, 'class cancel', 'sickness', '2020-03-06', 1, 0);
+(6, 'class cancel', 'sickness', '2020-03-06', 1, 0),
+(7, 'class cancel', 'class cancel for sickness', '2020-03-07', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -165,7 +167,8 @@ CREATE TABLE `results` (
 INSERT INTO `results` (`rid`, `examname`, `examtype`, `marks`, `stdid`, `courseid`) VALUES
 (1, 'Quiz 1', 'Quiz', 20, 2, 9),
 (2, 'Written', 'Written', 89, 2, 9),
-(3, 'Quiz 1', 'Objective', 12, 2, 9);
+(3, 'Quiz 1', 'Objective', 12, 2, 9),
+(4, 'Quiz 3', 'Objective', 27, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -184,7 +187,8 @@ CREATE TABLE `salary` (
 --
 
 INSERT INTO `salary` (`salaryid`, `amount`, `teacherid`) VALUES
-(8, 20000, 1);
+(8, 22000, 1),
+(9, 35000, 3);
 
 -- --------------------------------------------------------
 
@@ -210,7 +214,7 @@ CREATE TABLE `studentreg` (
 --
 
 INSERT INTO `studentreg` (`sid`, `sname`, `sinstitution`, `semail`, `spass`, `sphone`, `spname`, `spphone`, `spemail`, `status`) VALUES
-(1, 'Khalid Hasan', 'G.Lab', 'Khalid@gmail.com', '123', 1720089567, 'Kamal Hossain', 1720089566, 'kamal@gmail.com', 'no'),
+(1, 'Khalid Hasan', 'G.Lab', 'Khalid@gmail.com', '123', 1720089567, 'Kamal Hossain', 1684069494, 'kamal@gmail.com', 'yes'),
 (2, 'Malek Hasan', 'M.Lab', 'malek@gmail.com', '1234', 1720089599, 'Maleha Chowdhury', 1729924666, 'maleha@gmail.com', 'yes'),
 (3, 'Fariha Jahan Rainy', 'S.Lab', 'rainy@gmail.com', '123', 1720089567, 'Rokeya Begum', 1720089509, 'rokeya@gmail.com', 'no');
 
@@ -236,9 +240,10 @@ CREATE TABLE `teacherreg` (
 --
 
 INSERT INTO `teacherreg` (`tid`, `tname`, `temail`, `tpass`, `tphone`, `tqualification`, `status`, `salarystatus`) VALUES
-(1, 'Jahid hasan', 'jahid@gmail.com', '123', 176829978, 'Bsc. in Software Engineering', 'no', 'yes'),
-(3, 'kamal Hossain', 'kamal@gmail.com', '123', 176829978, 'Bsc in software engineering', 'no', 'no'),
-(4, 'Shafiq ahsan', 'ahsan@gmail.com', '12345', 176829970, '  Bsc in Engineering', '', 'no');
+(1, 'Jahid hasan', 'jahid@gmail.com', '123', 176829978, 'Bsc. in Software Engineering', 'yes', 'yes'),
+(3, 'kamal Hossain', 'kamal@gmail.com', '123', 176829978, 'Bsc in software engineering', 'no', 'yes'),
+(4, 'Shafiq ahsan', 'ahsan@gmail.com', '12345', 176829970, '  Bsc in Engineering', 'yes', 'no'),
+(6, 'Tuser Rahman', 'tusar@gmail.com', '123', 176829098, 'Bsc in civil software engineering', 'no', 'no');
 
 --
 -- Indexes for dumped tables
@@ -324,43 +329,43 @@ ALTER TABLE `choosecourse`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `noticeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `noticeid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `salary`
 --
 ALTER TABLE `salary`
-  MODIFY `salaryid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `salaryid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `studentreg`
 --
 ALTER TABLE `studentreg`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `teacherreg`
 --
 ALTER TABLE `teacherreg`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

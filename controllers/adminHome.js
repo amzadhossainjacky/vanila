@@ -37,6 +37,7 @@ router.get('/', function(req, res){
           }
 
           req.session.adminId = results[0].id;
+          req.session.adminName = results[0].aname;
           res.render('admin/admin_dashboard', {adminData: adminData});
      });
     
@@ -53,7 +54,7 @@ router.get('/edit/:id', function(req, res){
                     email :results[0].aemail, 
                     password :results[0].apass, 
                } 
-               res.render('admin/admin_info_edit', {adminInfo: adminInfo});
+               res.render('admin/admin_info_edit', {adminInfo: adminInfo, adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -66,7 +67,7 @@ router.post('/edit/:id', function(req, res){
     req.checkBody('name', 'Name field cannot be empty.').notEmpty();
     req.checkBody('email', 'Email field cannot be empty.').notEmpty();
     req.checkBody('password', 'Password field cannot be empty.').notEmpty();
-    const err = req.validationErrors();
+    var err = req.validationErrors();
 
     if(err){
 
@@ -79,7 +80,7 @@ router.post('/edit/:id', function(req, res){
                          password :results[0].apass, 
                     } 
                     res.render('admin/admin_info_edit', {adminInfo: adminInfo,
-                         errors: err});
+                         errors: err,adminName:req.session.adminName});
                }else{
                     res.redirect('/home');
                }
@@ -105,7 +106,7 @@ router.post('/edit/:id', function(req, res){
 
 //course
 router.get('/create_course', function(req, res){
-	res.render('admin/create_course');
+	res.render('admin/create_course',{adminName:req.session.adminName});
 });
 
 
@@ -145,7 +146,7 @@ router.get('/view_course', function(req, res){
 
      adminModel.getAllCourse(function(results){
           if(results.length > 0){
-               res.render('admin/view_course', {results: results});
+               res.render('admin/view_course', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -167,7 +168,7 @@ router.get('/edit_course/:id', function(req, res){
 
 	adminModel.courseInfo(req.params.id, function(results){
           if(results.length > 0){
-               res.render('admin/edit_course', {courseInfo: results});
+               res.render('admin/edit_course', {courseInfo: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -200,7 +201,7 @@ router.get('/approve_student', function(req, res){
 
      adminModel.getStudent(function(results){
           if(results.length > 0){
-               res.render('admin/approve_student', {results: results});
+               res.render('admin/approve_student', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -230,7 +231,7 @@ router.get('/approve_teacher', function(req, res){
 
      adminModel.getTeacher(function(results){
           if(results.length > 0){
-               res.render('admin/approve_teacher', {results: results});
+               res.render('admin/approve_teacher', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -260,7 +261,7 @@ router.get('/student_info', function(req, res){
 
      adminModel.getStudent(function(results){
           if(results.length > 0){
-               res.render('admin/student_info', {results: results});
+               res.render('admin/student_info', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -275,7 +276,7 @@ router.post('/student_info', function(req, res){
           
      adminModel.getSearchStudent(sdata,function(results){
           if(results.length > 0){
-               res.render('admin/student_info', {results: results});
+               res.render('admin/student_info', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home/student_info');
           }
@@ -287,7 +288,7 @@ router.get('/student_info_edit/:id', function(req, res){
 
      adminModel.getEditStudent(req.params.id,function(results){
           if(results.length > 0){
-               res.render('admin/student_info_edited', {results: results});
+               res.render('admin/student_info_edited', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -332,7 +333,7 @@ router.get('/student_delete/:id', function(req, res){
 
      adminModel.getTeacher(function(results){
           if(results.length > 0){
-               res.render('admin/teacher_info', {results: results});
+               res.render('admin/teacher_info', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -347,7 +348,7 @@ router.post('/teacher_info', function(req, res){
 
      adminModel.getSearchTeacher(tdata, function(results){
           if(results.length > 0){
-               res.render('admin/teacher_info', {results: results});
+               res.render('admin/teacher_info', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home/teacher_info');
           }
@@ -358,7 +359,7 @@ router.get('/teacher_info_edit/:id', function(req, res){
 
      adminModel.getEditTeacher(req.params.id,function(results){
           if(results.length > 0){
-               res.render('admin/teacher_info_edited', {results: results});
+               res.render('admin/teacher_info_edited', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -400,7 +401,7 @@ router.get('/teacher_delete/:id', function(req, res){
 //notice upload
 
 router.get('/notice_upload', function(req, res){
-     res.render('admin/notice_upload');
+     res.render('admin/notice_upload',{adminName:req.session.adminName});
 });
 
 
@@ -438,12 +439,12 @@ router.get('/entry_salary', function(req, res){
                var e = {
                     e:true
                };
-               res.render('admin/entry_salary', {results: results,error: e});
+               res.render('admin/entry_salary', {results: results,error: e,adminName:req.session.adminName});
           }else{
                var e = {
                     e:false
                };
-               res.render('admin/entry_salary', {error: e});
+               res.render('admin/entry_salary', {error: e,adminName:req.session.adminName});
           }
      });
      
@@ -479,7 +480,7 @@ router.get('/view_salary', function(req, res){
      adminModel.viewSalary(function(results){
 
           if(results.length > 0){
-               res.render('admin/view_salary', {results: results});
+               res.render('admin/view_salary', {results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -493,7 +494,7 @@ router.get('/edit_salary/:id', function(req, res){
 
      adminModel.editSalary(req.params.id, function(results){
           if(results.length > 0){
-               res.render('admin/edit_salary',{results: results});
+               res.render('admin/edit_salary',{results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -525,7 +526,7 @@ router.get('/notes_upload', function(req, res){
 
      adminModel.getCoursesId(function(results){
           if(results.length > 0){
-               res.render('admin/notes_upload',{results: results});
+               res.render('admin/notes_upload',{results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }
@@ -560,7 +561,7 @@ router.get('/marks_entry', function(req, res){
 
      adminModel.getCoursesId(function(results){
           if(results.length > 0){
-               res.render('admin/marks_entry',{results: results});
+               res.render('admin/marks_entry',{results: results,adminName:req.session.adminName});
           }else{
                res.redirect('/home');
           }

@@ -5,8 +5,9 @@ var router = express.Router();
 //router 
 router.get('/', function(req, res){
 
-    if(req.session.adminEmail !=null){
-        req.session.adminEmail= null;
+    if(req.session.adminName !=null){
+        req.session.adminId= null;
+        req.session.adminName= null;
         res.clearCookie('adminEmail');
     }
     res.render('login/admin_login');
