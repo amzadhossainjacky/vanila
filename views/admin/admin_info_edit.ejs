@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coaching Management System</title>
+    <link rel="stylesheet" href="/assets/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="/assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
+</head>
+
+<body>
+    <section class="nav-section">
+        <header class="admin-panel">
+            <nav class="nav-design">
+                <div class="logo">
+                    <h2>Vanila</h2>
+                </div>
+                <ul>
+                    <li>
+                        <h5> <%= adminInfo.aname %> </h5>
+                    </li>
+                    <li>
+                        <a href="" class="btn-primary"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="n-btn"> Logout </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </section>
+
+    <section>
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <ul>
+                    <li>
+                        <i class="fas fa-users"></i> <a class="ad-active" href="/home">Profile</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="create_course.html">Create Course</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="view_course.html">View Course</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="approve_student.html">Approve Student</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="approve_teacher.html">Approve Teacher</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="student_info.html">Student Info</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="teacher_info.html">Teacher Info</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="notes_upload.html">Notes Upload</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="notice_upload.html">Notice Upload</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="marks_entry.html">Create Marks</a>
+                    </li>
+                    
+                    <li>
+                        <i class="fas fa-hands-helping"></i> <a href="entry_salary.html">Entry Salary</a>
+                    </li>
+                    
+                    <li>
+                        <i class="fas fa-hands-helping"></i> <a href="view_salary.html">View Salary</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-hands-helping"></i> <a href="alert_parent.html">Alert Parents</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="content-wrapper">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <h3 class="my-3">Admin</h3>
+                            <form class="login-form" method="post">
+
+                                <%if(typeof errors != "undefined"){%>
+                                    <% errors.forEach(function(err){ %>
+                                        <span style="color:rgb(0, 0, 0); font-weight: 800; font-size: 20px;"><%=err.msg%></span> <br/>
+                                    <% }); %>
+                                <% } %> 
+
+                                <div class="form-group">
+                                    <label for="id">Id</label>
+                                    <input type="text" readonly class="form-control"  name="id" value="<%=adminInfo.id%>">
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="name">name</label>
+                                    <input type="text" class="form-control"  name="name" value="<%=adminInfo.name%>">
+                                  </div>
+
+                                <div class="form-group">
+                                  <label for="exampleInputEmail1">Email address</label>
+                                  <input type="email" class="form-control"  name="email" value="<%=adminInfo.email%>">
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="pass">Password</label>
+                                  <input type="text" class="form-control" name="password" value="<%=adminInfo.password%>">
+                                </div>
+                                
+                                <input class="btn btn-success mt-3" type="submit" value="update">
+                            </form>
+                        </div>
+                    <div>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/assets/js/jquery.js"></script>
+    <script src="/assets/js/proper.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+</body>
+
+</html>

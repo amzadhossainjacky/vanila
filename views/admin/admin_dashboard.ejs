@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coaching Management System</title>
+    <link rel="stylesheet" href="assets/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+
+<body>
+    <section class="nav-section">
+        <header class="admin-panel">
+            <nav class="nav-design">
+                <div class="logo">
+                    <h2>Vanila</h2>
+                </div>
+                <ul>
+                    <li>
+                        <h5> <%= adminData.name %> </h5>
+                    </li>
+                    <li>
+                        <a href="" class="btn-primary"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="n-btn"> Logout </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </section>
+
+    <section>
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <ul>
+                    <li>
+                        <i class="fas fa-users"></i> <a class="ad-active" href="/home">Profile</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="/home/create_course">Create Course</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="/home/view_course">View Course</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="/home/approve_student">Approve Student</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="/home/approve_teacher">Approve Teacher</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="/home/student_info">Student Info</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="/home/teacher_info">Teacher Info</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="/home/notes_upload">Notes Upload</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="/home/notice_upload">Notice Upload</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i> <a href="marks_entry.html">Create Marks</a>
+                    </li>
+                    
+                    <li>
+                        <i class="fas fa-hands-helping"></i> <a href="/home/entry_salary">Entry Salary</a>
+                    </li>
+                    
+                    <li>
+                        <i class="fas fa-hands-helping"></i> <a href="/home/view_salary">View Salary</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-hands-helping"></i> <a href="alert_parent.html">Alert Parents</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="content-wrapper">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <h1 class="mt-5">Admin Info </h1>
+                        </div>
+                        <div class="col-lg-8 my-5 p-5" style="border: 3px solid #f58776;">
+                            <h3>Name: <span><%= adminData.name%></span></h3>
+                            <h3>Email: <%= adminData.email%></h3>
+                            <a href="/home/edit/<%= adminData.id %>" class="btn btn-warning mt-3">Edit</a>
+                        </div>
+                    <div>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/proper.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+</body>
+
+</html>

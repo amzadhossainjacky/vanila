@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coaching Management System</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+
+<body>
+    <section class="nav-section">
+        <nav class="nav-design">
+            <div class="logo">
+                <h2>Vanila</h2>
+            </div>
+
+            <ul>
+                <li>
+                    <a href="index.html" > Home </a>
+                </li>
+                <li>
+                    <a href="#about-us"> About Us</a>
+                </li>
+                <li>
+                    <a href="courses.html"> Courses</a>
+                </li>
+                <li>
+                    <a href="notice.html"> Notice </a>
+                </li>
+                <li>
+                    <a href="contact.html"> Contact </a>
+                </li>
+                <li>
+                    <a href="login.html"> Sign In </a>
+                </li>
+                <li>
+                    <a href="" class="n-btn"> Register </a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    
+    <section class="form-section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-5">
+                    <h3 class="my-3">Admin</h3>
+                    <form class="login-form" method="post">
+
+                        <%if(typeof errors != "undefined"){%>
+                            <% errors.forEach(function(err){ %>
+                                <span style="color:rgb(0, 0, 0); font-weight: 800; font-size: 20px;"><%=err.msg%></span> <br/>
+                            <% }); %>
+                        <% } %> 
+                        
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Email address</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name="email">
+                        </div>
+                        <div class="form-group">
+                          <label for="pass">Password</label>
+                          <input type="password" class="form-control" id="pass" placeholder="Password" name="password">
+                        </div>
+                        <button type="submit" class="btn btn-dark">submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="top-footer">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-lg-4">
+                        <div class="footer-nav">
+                            <h6>Navigation</h6>
+                            <hr>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Courses</a></li>
+                                <li><a href="#">Contacts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="footer-service">
+                            <h6>Course Type</h6>
+                            <hr>
+                            <ul>
+                                <li><a href="#">Regular</a></li>
+                                <li><a href="#">Model Test</a></li>
+                                <li><a href="#">Revision</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="footer-contact">
+                            <h6>Contact Info</h6>
+                            <hr>
+                            <p>
+                                Lorem ipsum dolor sit amet, consect etur adipis.
+                            </p>
+                            <span><strong>Tel:</strong>+01-788-873338</span>
+                            <span><strong>Email:</strong>hello@chemtor.com</span>
+                            <span><strong>Location:</strong>Mohammadpur,Dhaka-1207</span>
+                        </div>                              
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/proper.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+</body>
+
+</html>

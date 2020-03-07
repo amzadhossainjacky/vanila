@@ -1,0 +1,270 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+/**********************************
+
+***            Font
+
+**********************************/
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
+
+/**********************************
+
+***   customize html
+
+**********************************/
+body {
+  overflow-x: hidden;
+}
+ul {
+  margin: 0px;
+}
+
+h1,h2,h3,h4,h5{
+margin-bottom: 0px;
+}
+/**********************************
+
+***   Global Class 
+
+**********************************/
+
+.active {
+  background-color: #32393e;
+}
+
+.form-section{
+  padding: 100px 0px;
+}
+
+.login-form{
+  background: #f58776;
+  padding: 30px;
+}
+/**********************************
+
+***   nav-bar design 
+
+**********************************/
+
+.nav-design {
+  display: flex;
+  justify-content: space-around;
+  background-color: #485864;
+  color: #fff;
+  height: 10vh;
+  align-items: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.nav-design ul {
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-design ul li {
+  list-style: none;
+}
+
+.nav-design ul a {
+  text-decoration: none;
+  font-size: 15x;
+  display: block;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-weight: bolder;
+}
+
+.nav-design ul a:hover {
+  background-color: #32393e;
+  transition: 0.4 s all ease-in;
+}
+
+.n-btn {
+  background-color: #f58776;
+}
+
+
+
+
+
+
+/**********************************
+
+***            Banner
+
+**********************************/
+
+.banner {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.5)), url(../images/banner.jpg) no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+.banner .contain{
+    position: absolute;
+    width: 900px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+.banner h1{
+font-size: 40px;
+margin-bottom: 15px;
+}
+
+.banner p{
+    font-size: 18px;
+}
+
+
+/**********************************
+
+***            about us
+
+**********************************/
+.about-us{
+  padding: 100px 0px;
+}
+
+.about-us h1{
+  
+margin-bottom: 50px;
+}
+
+/**********************************
+
+***      footer section       ***
+
+**********************************/
+
+.top-footer{
+  background: #485864;
+  color: #ccc;
+  padding: 90px 0px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.top-footer h6{
+  font-size: 22px;
+  font-weight: 900;
+  text-transform: capitalize;
+  color: #fff;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.top-footer hr{
+  background: #fff;
+  margin: 10px 0px;}
+.top-footer ul {
+  display: inline-block;
+  padding: 0px;
+}
+.top-footer li{
+  list-style: none;
+}
+.top-footer a{
+  text-decoration: none;
+  color: #ccc;
+  padding: 5px 0px;
+  display: inline-block;
+}
+.top-footer a:hover{
+  color: #fff;
+}
+
+.footer-contact span{
+  display: inline-block;
+  margin-bottom: 18px;
+}
+.footer-contact strong{
+  color: rgb(247, 247, 247);
+  margin-right: 5px;
+  margin-bottom: 15px;
+}
+
+
+
+
+/**********************************
+
+***            admin
+
+**********************************/
+
+/* navbar   */
+.admin-panel ul{
+  justify-content: flex-end;
+}
+.admin-panel ul li{
+  margin-left: 29px;
+}
+
+
+
+/* sidebar   */
+
+#wrapper{
+  display: flex;
+}
+
+#wrapper #content-wrapper {
+  overflow-x: hidden;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 80px;
+}
+
+.sidebar {
+  border-radius: 0px 30px 30px 0px;
+  width: 200px !important;
+  background-color: #2d3f52;
+  min-height: 90vh;
+}
+.sidebar ul li{
+  list-style: none;
+}
+.sidebar i{
+  color: #fff;
+  font-size: 15px;
+  margin: 0px 8px;
+}
+
+.sidebar ul li a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  display: inline-block;
+  padding: 4px 8px 4px 0px;
+  margin-bottom: 10px;
+  font-weight: bolder;
+}
+.sidebar ul li:first-child{
+  margin-top: 30px;
+}
+
+.sidebar .ad-active{
+  color: #f58776;
+}
+.sidebar ul li a:hover{
+  color: #f58776;
+}
+
+
+
