@@ -3,7 +3,7 @@ var adminModel = require.main.require('./models/adminModel');
 var router = express.Router();
 
 
-//file upload multer
+//file upload require multer
 var multer = require('multer');
 
 var storage = multer.diskStorage({
@@ -17,7 +17,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 
-
+//restriction before entering dash board
 router.get('*', function(req, res, next){
 	if(req.cookies['adminEmail'] == null){
 		res.redirect('/admin');
@@ -26,6 +26,8 @@ router.get('*', function(req, res, next){
 	}
 });
 
+
+// all Home task starting 
 router.get('/', function(req, res){
 
      adminModel.getByAemail(req.cookies['adminEmail'], function(results){
@@ -113,11 +115,6 @@ router.get('/create_course', function(req, res){
 router.post('/create_course', function(req, res){
 
           var today = new Date();
-          /* var dd = String(today.getDate()).padStart(2, '0');
-          var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-          var yyyy = today.getFullYear();
-          
-          today = mm + '-' + dd + '-' + yyyy; */
 
           var cdata = {
                type: req.body.courseType,
@@ -132,13 +129,17 @@ router.post('/create_course', function(req, res){
                
           }
 
-          adminModel.courseInsert(cdata, function(status){
-               if(status){
-                    res.send({msg: 'insert ok'});
-               }else{
-                    res.redirect('/home/create_course');
-               }
-          })
+          if(cdata.time=="" || cdata.fees==""){
+               res.send({msg: 'Please Filled all the field'});
+          }else{
+               adminModel.courseInsert(cdata, function(status){
+                    if(status){
+                         res.send({msg: 'insert ok'});
+                    }else{
+                         res.redirect('/home/create_course');
+                    }
+               })
+          }
 });
 
 
@@ -256,7 +257,6 @@ router.post('/approve_Teacher/:id', function(req, res){
 
 
 //student customization
-
 router.get('/student_info', function(req, res){
 
      adminModel.getStudent(function(results){
@@ -328,6 +328,8 @@ router.get('/student_delete/:id', function(req, res){
           }
      });
 });
+
+
 //teacher customization
  router.get('/teacher_info', function(req, res){
 
@@ -383,7 +385,7 @@ router.post('/teacher_info_edit/:id', function(req, res){
           }else{
                res.redirect('/home');
           }
-     });
+     }); 
 });
 
 router.get('/teacher_delete/:id', function(req, res){
@@ -399,7 +401,6 @@ router.get('/teacher_delete/:id', function(req, res){
 
 
 //notice upload
-
 router.get('/notice_upload', function(req, res){
      res.render('admin/notice_upload',{adminName:req.session.adminName});
 });
@@ -418,13 +419,20 @@ router.post('/notice_upload', function(req, res){
           teacherId: 'NULL'
      }
 
-     adminModel.noticeUpload(ndata, function(status){
-          if(status){
-               res.send({msg: 'notice upload'});
-          }else{
-               res.redirect('/home');
-          }
-     })
+     if(ndata.topic=="" || ndata.details=="" || ndata.topic=="" && ndata.details=="" ){
+          res.send({msg: 'Please Filled all fields'});
+     }else{
+
+          adminModel.noticeUpload(ndata, function(status){
+               if(status){
+                    res.send({msg: 'notice upload'});
+               }else{
+                    res.redirect('/home');
+               }
+          })
+     }
+     
+
      
 });
      
@@ -457,7 +465,7 @@ router.post('/entry_salary', function(req, res){
           amount: req.body.amount,
           status: 'yes'
      }
-
+     
      adminModel.entrySalary(ndata, function(status){
           if(status){
                adminModel.getSalaryTeacher(ndata,function(status){
@@ -555,8 +563,6 @@ router.post('/notes_upload',upload.single('file'),function(req, res){
 
 
 //marks upload
-
-
 router.get('/marks_entry', function(req, res){
 
      adminModel.getCoursesId(function(results){

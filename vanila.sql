@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2020 at 03:00 PM
+-- Generation Time: Mar 08, 2020 at 03:22 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -94,7 +94,7 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`cid`, `ctype`, `batch`, `date`, `fees`, `classtime`, `classday`, `status`, `adminid`, `teacherid`) VALUES
-(1, 'Model Test', 'SSC', '2020-03-02', 4000, '13:59:00', 'Sunday & Tuesday', 'yes', 1, 0),
+(1, 'Model Test', 'SSC', '2020-03-02', 2000, '13:59:00', 'Sunday & Tuesday', 'yes', 1, 0),
 (2, 'Model Test', 'SSC', '2020-03-02', 2000, '13:59:00', 'Sunday & Tuesday', 'yes', 1, 0),
 (9, 'Model Test', 'SSC', '2020-03-07', 2200, '13:59:00', 'Sunday & Tuesday', 'yes', 1, 0);
 
@@ -243,7 +243,7 @@ INSERT INTO `teacherreg` (`tid`, `tname`, `temail`, `tpass`, `tphone`, `tqualifi
 (1, 'Jahid hasan', 'jahid@gmail.com', '123', 176829978, 'Bsc. in Software Engineering', 'yes', 'yes'),
 (3, 'kamal Hossain', 'kamal@gmail.com', '123', 176829978, 'Bsc in software engineering', 'no', 'yes'),
 (4, 'Shafiq ahsan', 'ahsan@gmail.com', '12345', 176829970, '  Bsc in Engineering', 'yes', 'no'),
-(6, 'Tuser Rahman', 'tusar@gmail.com', '123', 176829098, 'Bsc in civil software engineering', 'no', 'no');
+(6, 'Tuser Rahman', 'tusar@gmail.com', '123', 176829098, '   Bsc in civil software engineering', '', 'no');
 
 --
 -- Indexes for dumped tables
@@ -329,7 +329,7 @@ ALTER TABLE `choosecourse`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `notes`
@@ -347,7 +347,7 @@ ALTER TABLE `notice`
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `salary`

@@ -111,7 +111,7 @@ courseUpdate: function(course, callback){
      });
 },
 
-//student info
+//student update
 getStudent: function(callback){
     var sql = "SELECT * FROM studentreg ORDER BY sid DESC";  
 
@@ -137,6 +137,7 @@ approveStudent: function(sdata, callback){
      });
 },
 
+//teacher update
 
 getTeacher: function(callback){
     var sql = "SELECT * FROM teacherreg ORDER BY tid DESC";  
@@ -356,7 +357,6 @@ updateSalary: function(data, callback){
 
 
 //notes 
-
 getCoursesId: function(callback){
 
     var sql = "select * from courses" ;

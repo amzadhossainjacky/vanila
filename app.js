@@ -4,7 +4,7 @@
 
 **********************************/
 
-        //require modules
+//require modules
 var express = require('express');
 var mysql = require('mysql');
 var ejs = require('ejs');
@@ -12,8 +12,6 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var exValidator = require('express-validator');
-//file upload require
-
 
 
 //controller require
