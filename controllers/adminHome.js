@@ -2,7 +2,13 @@ var express = require('express');
 var adminModel = require.main.require('./models/adminModel');
 var router = express.Router();
 
+//require some stuff code 
 
+//pdf maker
+var pdfMake = require.main.require('./pdfmake/pdfmake');
+var vfsFonts = require.main.require('./pdfmake/vfs_fonts');
+
+pdfMake.vfs = vfsFonts.pdfMake.vfs;
 //file upload require multer
 var multer = require('multer');
 
@@ -17,7 +23,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 
-//restriction before entering dash board
+//restriction before entering dashboard routing code 
 router.get('*', function(req, res, next){
 	if(req.cookies['adminEmail'] == null){
 		res.redirect('/admin');
@@ -591,6 +597,113 @@ router.post('/marks_entry', function(req, res){
                res.redirect('/home/marks_entry');
           }else{
                res.redirect('/home');
+          }
+     })
+
+});
+
+//report controller
+router.get('/report', function(req, res){
+
+     var reportData ={
+          modelTest: 0,
+          revision: 0,
+          regular:0
+     }
+
+     adminModel.getAllChooseCourses(function(results){
+          if(results.length > 0){
+               
+               for (var i = 0; i < results.length; i += 1) {
+                    if(results[i].ctype =="Model Test"){
+                         reportData.modelTest = reportData.modelTest + 1
+                    }
+                    if(results[i].ctype =="Revision"){
+                         reportData.revision = reportData.revision + 1
+                    }
+                    if(results[i].ctype =="Regular"){
+                         reportData.regular = reportData.regular + 1
+                    }
+                    
+               }
+
+               res.render('admin/report',{reportData: reportData,adminName:req.session.adminName});
+               
+          }else{
+                 res.redirect('/home');
+          }
+     })
+
+});
+
+router.get('/report_print', function(req, res){
+
+     var reportData ={
+          modelTest: 0,
+          revision: 0,
+          regular:0
+     }
+
+     adminModel.getAllChooseCourses(function(results){
+          if(results.length > 0){
+               
+               for (var i = 0; i < results.length; i += 1) {
+                    if(results[i].ctype =="Model Test"){
+                         reportData.modelTest = reportData.modelTest + 1
+                    }
+                    if(results[i].ctype =="Revision"){
+                         reportData.revision = reportData.revision + 1
+                    }
+                    if(results[i].ctype =="Regular"){
+                         reportData.regular = reportData.regular + 1
+                    }
+                    
+               }
+
+               var reportDoc = {
+                    content: [
+                         {
+                              
+                         text: 'Course Report Analysis',
+			          style: 'header'
+                         },
+                         {
+                              text:  'Model Test Courses chosen : '+reportData.modelTest+ "students"
+                         },
+                         {
+                              text:  'revision Courses chosen : '+reportData.revision+ "students" 
+                         },
+                         {
+                              text:'Model Test Courses chosen : '+reportData.regular+ "students"
+                         }
+                    ],
+                    
+                    styles: {
+                         header: {
+                              fontSize: 18,
+                              bold: true,
+                              alignment: 'right',
+                              margin: [0, 20, 0, 80]
+                         }
+                    }
+                    
+               }
+               
+               var pdfDoc = pdfMake.createPdf(reportDoc);
+
+               pdfDoc.getBase64((data)=>{
+                   res.writeHead(200, 
+                   {
+                       'Content-Type': 'application/pdf',
+                       'Content-Disposition':'attachment;filename="course-analysis-report.pdf"'
+                   });
+           
+                   var download = Buffer.from(data.toString('utf-8'), 'base64');
+                   res.end(download);
+               });
+
+          }else{
+                 res.redirect('/home');
           }
      })
 

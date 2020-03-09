@@ -54,7 +54,7 @@
                         <i class="fas fa-users"></i> <a href="/home/approve_teacher">Approve Teacher</a>
                     </li>
                     <li>
-                        <i class="fas fa-users"></i> <a href="/home/student_info">Student Info</a>
+                        <i class="fas fa-users"></i> <a  href="/home/student_info">Student Info</a>
                     </li>
                     <li>
                         <i class="fas fa-users"></i> <a href="/home/teacher_info">Teacher Info</a>
@@ -70,51 +70,46 @@
                     </li>
                     
                     <li>
-                        <i class="fas fa-hands-helping"></i> <a class="ad-active" href="/home/entry_salary">Entry Salary</a>
+                        <i class="fas fa-hands-helping"></i> <a href="/home/entry_salary">Entry Salary</a>
                     </li>
                     
                     <li>
                         <i class="fas fa-hands-helping"></i> <a href="/home/view_salary">View Salary</a>
                     </li>
-                    
+
                     <li>
-                        <i class="fas fa-hands-helping"></i> <a href="/home/report"> Report </a>
+                        <i class="fas fa-hands-helping"></i> <a class="ad-active" href="/home/report"> Report </a>
                     </li>
                 </ul>
             </div>
 
             <div id="content-wrapper">
                 <div class="container-fluid">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <h1 class="mt-5">Entry Salary</h1>
-                            
-                            <% if (error.e) { %>
-                            <form class="mt-5" method="post">
-                                
-                                <div class="form-group" id="insert">
-                                    <label for="t_id">Teacher Id</label>
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-8 mb-4 mr-auto">
+                            <h1>Course Report Analysis</h1>
 
-                                    <select class="form-control" name="id">
-                                        <% for (var i=0; i< results.length; i++) { %>
-                                            <option> <%=  results[i].tid%> </option>
-                                        <% } %>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                  <label for="amount">Amount</label>
-                                  <input type="number" class="form-control" id="amount" placeholder="amount value" name="amount">
-                                </div>
-                                <input type="submit" class="btn btn-success" value="submit">
-                              </form>
+                            <div class="col-lg-8 mt-4">
+                                <a href="/home/report_print" class="btn btn-info"> PDF</a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-10">
+                            <table class="table table-hover table-primary">
+                                <thead class="table-danger">
+                                <tr>
+                                    <th>Model Test Courses Count</th>
+                                    <th>Revision Courses Count</th>
+                                    <th>Regular Courses Count</th>
+                                </tr>
+                                </thead>
                             
-                            <% } %>
-
-                            <% if (!error.e) { %>
-                                
-                                <h2 class="mt-5">Recently no teacher added</h2>
-                            
-                            <% } %>
+                                <tbody>
+                                    <td><%=reportData.modelTest%></td>
+                                    <td><%=reportData.revision%></td>
+                                    <td><%=reportData.regular%></td>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -125,6 +120,8 @@
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/proper.js"></script>
     <script src="/assets/js/bootstrap.js"></script>
+
+    
 </body>
 
 </html>

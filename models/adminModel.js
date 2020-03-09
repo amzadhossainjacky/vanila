@@ -395,5 +395,23 @@ entryMarks: function(data, callback){
                  callback(false);
             }
      });
+},
+
+
+//report show model
+
+
+getAllChooseCourses: function(callback){
+    var sql = 'select * from choosecourse';
+
+    db.getResults(sql,null,function(results){
+        if(results.length > 0){
+            callback(results);
+        }else{
+            callback([]);
+        }
+     });
 }
+
+//report download model
 }
