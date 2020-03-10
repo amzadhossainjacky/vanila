@@ -91,7 +91,11 @@
                         </div>
                         <div class="col-lg-5">
                             <form class="form" method="post">
-
+                                <%if(typeof errors != "undefined"){%>
+                                    <% errors.forEach(function(err){ %>
+                                        <span style="color:rgb(0, 0, 0); font-weight: 800; font-size: 20px;background-color: rgb(226, 88, 88);padding: 8px; margin-bottom: 10px; display: inline-block;"><%=err.msg%></span> <br/>
+                                    <% }); %>
+                                <% } %>
                                 <div class="form-group">
                                 <h5>Exam Type</h5>
                                 <select class="form-control" name="examType" id="examType">

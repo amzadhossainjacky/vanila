@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2020 at 03:22 AM
+-- Generation Time: Mar 10, 2020 at 02:55 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -118,9 +118,7 @@ CREATE TABLE `notes` (
 INSERT INTO `notes` (`nid`, `title`, `file`, `courseid`) VALUES
 (1, 'First post', '1583564327356quotes.jpg', 1),
 (2, 'asynchronous', '1583564562551Async & Performance.pdf', 2),
-(3, 'Third post', '1583564775842nodeinfo.txt', 9),
-(4, 'details', '1583564981460info.txt', 9),
-(5, 'lastpost', '1583588778101nodejs.txt', 9);
+(3, 'Third post', '1583564775842nodeinfo.txt', 9);
 
 -- --------------------------------------------------------
 
@@ -165,10 +163,7 @@ CREATE TABLE `results` (
 --
 
 INSERT INTO `results` (`rid`, `examname`, `examtype`, `marks`, `stdid`, `courseid`) VALUES
-(1, 'Quiz 1', 'Quiz', 20, 2, 9),
-(2, 'Written', 'Written', 89, 2, 9),
-(3, 'Quiz 1', 'Objective', 12, 2, 9),
-(4, 'Quiz 3', 'Objective', 27, 1, 2);
+(1, 'Quiz 1', 'Quiz', 20, 2, 9);
 
 -- --------------------------------------------------------
 
@@ -187,8 +182,7 @@ CREATE TABLE `salary` (
 --
 
 INSERT INTO `salary` (`salaryid`, `amount`, `teacherid`) VALUES
-(8, 22000, 1),
-(9, 35000, 3);
+(12, 22000, 1);
 
 -- --------------------------------------------------------
 
@@ -214,7 +208,7 @@ CREATE TABLE `studentreg` (
 --
 
 INSERT INTO `studentreg` (`sid`, `sname`, `sinstitution`, `semail`, `spass`, `sphone`, `spname`, `spphone`, `spemail`, `status`) VALUES
-(1, 'Khalid Hasan', 'G.Lab', 'Khalid@gmail.com', '123', 1720089567, 'Kamal Hossain', 1684069494, 'kamal@gmail.com', 'yes'),
+(1, 'Khalid Hasan', 'G.Lab', 'Khalid@gmail.com', '123', 1720089567, 'Kamal Hossain', 1684069494, 'kamal@gmail.com', 'no'),
 (2, 'Malek Hasan', 'M.Lab', 'malek@gmail.com', '1234', 1720089599, 'Maleha Chowdhury', 1729924666, 'maleha@gmail.com', 'yes'),
 (3, 'Fariha Jahan Rainy', 'S.Lab', 'rainy@gmail.com', '123', 1720089567, 'Rokeya Begum', 1720089509, 'rokeya@gmail.com', 'no');
 
@@ -240,10 +234,10 @@ CREATE TABLE `teacherreg` (
 --
 
 INSERT INTO `teacherreg` (`tid`, `tname`, `temail`, `tpass`, `tphone`, `tqualification`, `status`, `salarystatus`) VALUES
-(1, 'Jahid hasan', 'jahid@gmail.com', '123', 176829978, 'Bsc. in Software Engineering', 'yes', 'yes'),
-(3, 'kamal Hossain', 'kamal@gmail.com', '123', 176829978, 'Bsc in software engineering', 'no', 'yes'),
+(1, 'Jahid hasan', 'jahid@gmail.com', '123', 176829978, 'Bsc. in Software Engineering', 'no', 'yes'),
+(3, 'kamal Hossain', 'kamal@gmail.com', '123', 176829978, 'Bsc in software engineering', 'no', 'no'),
 (4, 'Shafiq ahsan', 'ahsan@gmail.com', '12345', 176829970, '  Bsc in Engineering', 'yes', 'no'),
-(6, 'Tuser Rahman', 'tusar@gmail.com', '123', 176829098, '   Bsc in civil software engineering', '', 'no');
+(6, 'Tuser Rahman', 'tusar@gmail.com', '123', 176829098, '    Bsc in civil software engineering', '', 'no');
 
 --
 -- Indexes for dumped tables
@@ -335,7 +329,7 @@ ALTER TABLE `courses`
 -- AUTO_INCREMENT for table `notes`
 --
 ALTER TABLE `notes`
-  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `notice`
@@ -347,13 +341,13 @@ ALTER TABLE `notice`
 -- AUTO_INCREMENT for table `results`
 --
 ALTER TABLE `results`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `salary`
 --
 ALTER TABLE `salary`
-  MODIFY `salaryid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `salaryid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `studentreg`

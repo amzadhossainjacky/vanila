@@ -7,8 +7,8 @@ var router = express.Router();
 //pdf maker
 var pdfMake = require.main.require('./pdfmake/pdfmake');
 var vfsFonts = require.main.require('./pdfmake/vfs_fonts');
-
 pdfMake.vfs = vfsFonts.pdfMake.vfs;
+
 //file upload require multer
 var multer = require('multer');
 
@@ -537,7 +537,6 @@ router.post('/edit_salary/:id', function(req, res){
 //upload files or notes task
 router.get('/notes_upload', function(req, res){
 
-
      adminModel.getCoursesId(function(results){
           if(results.length > 0){
                res.render('admin/notes_upload',{results: results,adminName:req.session.adminName});
@@ -549,22 +548,21 @@ router.get('/notes_upload', function(req, res){
 });
 
 router.post('/notes_upload',upload.single('file'),function(req, res){
-
-     var ninfo = {
-          filename: req.file.filename,
-          title: req.body.title,
-          courseid: req.body.courseid
-
-     }
-
-     adminModel.uploadFile(ninfo,function(status){
-          if(status){
-               res.redirect('/home/notes_upload');
-          }else{
-               res.redirect('/home');
-          }
-     })
+          
+          var ninfo = {
+               filename: req.file.filename,
+               title: req.body.title,
+               courseid: req.body.courseid
      
+          }
+     
+          adminModel.uploadFile(ninfo,function(status){
+               if(status){
+                    res.redirect('/home/notes_upload');
+               }else{
+                    res.redirect('/home');
+               }
+          })   
 });
 
 
@@ -592,13 +590,29 @@ router.post('/marks_entry', function(req, res){
           marks: req.body.marks
      }
 
-     adminModel.entryMarks(data,function(status){
-          if(status){
-               res.redirect('/home/marks_entry');
-          }else{
-               res.redirect('/home');
-          }
-     })
+     req.checkBody('userid', 'userid field cannot be empty.').notEmpty();
+     req.checkBody('marks', 'marks field cannot be empty.').notEmpty();
+     var err = req.validationErrors();
+
+     if(err){
+          adminModel.getCoursesId(function(results){
+               if(results.length > 0){
+                    res.render('admin/marks_entry',{results: results,errors: err,adminName:req.session.adminName});
+               }else{
+                    res.redirect('/home');
+               }
+          })
+     }
+     else{
+          adminModel.entryMarks(data,function(status){
+               if(status){
+                    res.redirect('/home/marks_entry');
+               }else{
+                    res.redirect('/home');
+               }
+          })
+     }
+     
 
 });
 
@@ -671,7 +685,7 @@ router.get('/report_print', function(req, res){
                               text:  'Model Test Courses chosen : '+reportData.modelTest+ "students"
                          },
                          {
-                              text:  'revision Courses chosen : '+reportData.revision+ "students" 
+                              text:  'Revision Courses chosen : '+reportData.revision+ "students" 
                          },
                          {
                               text:'Model Test Courses chosen : '+reportData.regular+ "students"
